@@ -9,7 +9,7 @@ import { useUiStore, useCalendarStore } from '../../hooks';
 export const CalendarPage = () => {
 
   const { openDateModal } = useUiStore();
-  const { events, setActiveEvent } = useCalendarStore();
+  const { events, setActiveEvent, activeEvent } = useCalendarStore();
 
   //Aqui vemos en el local storage cual fue la ultima vusta en la que estuvimos, si esta en null asignamos week
   const [lastView, setLastView] = useState(localStorage.getItem('lastView') || 'week') 
@@ -18,7 +18,8 @@ export const CalendarPage = () => {
     // console.log({event,start,end,isSelected});
 
     const style = {
-      backgroundColor: '#347CF7',
+      // Esto es para cambiar el color de la que este activa en el momento
+      backgroundColor: event._id === activeEvent?._id? '#264984' : '#347CF7',
       borderRadius: '0px',
       opacity: 0.8,
       color: 'white'

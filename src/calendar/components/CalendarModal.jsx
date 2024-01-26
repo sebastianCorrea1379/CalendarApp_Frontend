@@ -41,6 +41,7 @@ export const CalendarModal = () => {
     end: addHours( new Date(), 2 ),
   });
 
+  // Esto es para controlar que se el campo se vea rojo si esta mal y si ya se submiteo
   const titleClass = useMemo(() => {
     if( !formSubmited ) return '';
 
@@ -50,6 +51,7 @@ export const CalendarModal = () => {
 
   }, [ formValues.title, formSubmited ]);
 
+  // Esto es para poner los valores del evento actual al formulario
   useEffect(() => {
     if( activeEvent !== null ){
       setFormValues({ ...activeEvent });
@@ -92,7 +94,6 @@ export const CalendarModal = () => {
 
     console.log(formValues);
 
-    // TODO:
     await startSavingEvent( formValues );
     closeDateModal();
     setFormSubmited( false );
